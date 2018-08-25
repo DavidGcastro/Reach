@@ -3,10 +3,15 @@ const path = require('path');
 const SRC_DIR = path.resolve(__dirname, 'client');
 const DIST_DIR = path.resolve(__dirname, 'public');
 
+// output: {
+//   path: path.resolve(__dirname, 'dist'),
+//   publicPath: '/dist/',
+//   filename: 'bundle.js'
+// }
 const config = {
   entry: ['babel-polyfill', SRC_DIR + '/index.js'],
   output: {
-    path: DIST_DIR,
+    path: path.resolve(__dirname, 'public'),
     filename: 'bundle.js'
   },
   devServer: {

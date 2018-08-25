@@ -1,10 +1,10 @@
 {
-  "name": "fullstack-boiler",
+  "name": "reach",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:dev": "webpack-dev-server -w --mode development & nodemon server/index.js -e html,js,css --ignore public",
+    "start:dev": "webpack-dev-server -w --mode development & nodemon server/index.js -e html,js,css --ignore public & webpack",
     "start": "nodemon server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
