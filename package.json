@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:dev": "webpack-dev-server -w --mode development & nodemon server/index.js -e html,js,css --ignore public & webpack",
+    "start:dev": "webpack-dev-server  -w --mode development & nodemon server/index.js -e html,js,css --ignore public",
     "start": "nodemon server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
