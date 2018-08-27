@@ -1,0 +1,7 @@
+{
+    "typescript.autoClosingTags": false,
+    "javascript.suggestionActions.enabled": false,
+    "typescript.autoImportSuggestions.enabled": false,
+    "typescript.disableAutomaticTypeAcquisition": true,
+    "typescript.format.enable": false
+}
