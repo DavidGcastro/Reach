@@ -94,7 +94,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar LeftSide = function LeftSide() {\n  return _react2.default.createElement(\n    'h1',\n    null,\n    'Left'\n  );\n};\n\nexports.default = LeftSide;\n\n//# sourceURL=webpack:///./client/components/LeftSide.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar LeftSide = function LeftSide() {\n  return _react2.default.createElement(\n    \"div\",\n    { className: \"left--parent\" },\n    _react2.default.createElement(\n      \"div\",\n      { className: \"left--parent--textContainer\" },\n      _react2.default.createElement(\n        \"h1\",\n        null,\n        \"The\"\n      ),\n      _react2.default.createElement(\n        \"h1\",\n        null,\n        \"Great\"\n      ),\n      _react2.default.createElement(\n        \"h1\",\n        null,\n        \"Guessing Game\"\n      ),\n      _react2.default.createElement(\n        \"button\",\n        { className: \"button\" },\n        \"Begin\"\n      )\n    )\n  );\n};\n\nexports.default = LeftSide;\n\n//# sourceURL=webpack:///./client/components/LeftSide.js?");
 
 /***/ }),
 
@@ -118,7 +118,7 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar RightSide = function RightSide() {\n  return _react2.default.createElement(\n    'h1',\n    null,\n    'Right'\n  );\n};\n\nexports.default = RightSide;\n\n//# sourceURL=webpack:///./client/components/RightSide.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar RightSide = function RightSide() {\n  return _react2.default.createElement(\n    \"div\",\n    { className: \"right--parent\" },\n    _react2.default.createElement(\n      \"h1\",\n      null,\n      \"Right\"\n    )\n  );\n};\n\nexports.default = RightSide;\n\n//# sourceURL=webpack:///./client/components/RightSide.js?");
 
 /***/ }),
 
@@ -130,7 +130,7 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactDom = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n\nvar _reactDom2 = _interopRequireDefault(_reactDom);\n\nvar _Main = __webpack_require__(/*! ./components/Main */ \"./client/components/Main.js\");\n\nvar _Main2 = _interopRequireDefault(_Main);\n\n__webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ \"./node_modules/bootstrap/dist/css/bootstrap.min.css\");\n\n__webpack_require__(/*! ./styles/main.scss */ \"./client/styles/main.scss\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n_reactDom2.default.render(_react2.default.createElement(\n  'div',\n  null,\n  _react2.default.createElement(_Main2.default, null)\n), document.getElementById('root'));\n\n//# sourceURL=webpack:///./client/index.js?");
+eval("\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactDom = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n\nvar _reactDom2 = _interopRequireDefault(_reactDom);\n\nvar _Main = __webpack_require__(/*! ./components/Main */ \"./client/components/Main.js\");\n\nvar _Main2 = _interopRequireDefault(_Main);\n\n__webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ \"./node_modules/bootstrap/dist/css/bootstrap.min.css\");\n\n__webpack_require__(/*! ./styles/main.scss */ \"./client/styles/main.scss\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n_reactDom2.default.render(_react2.default.createElement(\n  'div',\n  { className: 'root' },\n  _react2.default.createElement(_Main2.default, null)\n), document.getElementById('root'));\n\n//# sourceURL=webpack:///./client/index.js?");
 
 /***/ }),
 
@@ -4151,7 +4151,7 @@ eval("exports = module.exports = __webpack_require__(/*! ../../../css-loader/lib
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ \"./node_modules/css-loader/lib/css-base.js\")(false);\n// imports\n\n\n// module\nexports.push([module.i, \".main--parent {\\n  display: flex; }\\n\", \"\"]);\n\n// exports\n\n\n//# sourceURL=webpack:///./client/styles/main.scss?./node_modules/css-loader!./node_modules/sass-loader/lib/loader.js");
+eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ \"./node_modules/css-loader/lib/css-base.js\")(false);\n// imports\n\n\n// module\nexports.push([module.i, \".main--parent {\\n  display: flex;\\n  height: 100%; }\\n\\n.button {\\n  letter-spacing: 1px;\\n  padding: 5px;\\n  font-size: 2.25vh; }\\n\\n.left--parent {\\n  flex: 2.5;\\n  background-color: #ffde16;\\n  display: flex;\\n  justify-content: center;\\n  align-content: center; }\\n  .left--parent--textContainer {\\n    display: flex;\\n    align-content: center;\\n    justify-content: center;\\n    flex-direction: column; }\\n    .left--parent--textContainer h1 {\\n      font-size: 7vh; }\\n  .left--parent button {\\n    margin-top: 20px; }\\n\\n.right--parent {\\n  flex: 1;\\n  background-color: 'white'; }\\n\\n.root {\\n  height: 100vh; }\\n\\ninput,\\nbutton,\\nsubmit {\\n  border: none; }\\n\", \"\"]);\n\n// exports\n\n\n//# sourceURL=webpack:///./client/styles/main.scss?./node_modules/css-loader!./node_modules/sass-loader/lib/loader.js");
 
 /***/ }),
 

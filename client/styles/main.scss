@@ -1,1 +1,14 @@
+@import './variables/colors';
 @import './partials/_main';
+@import './partials/_leftSide';
+@import './partials/_rightSide';
+
+.root {
+  height: 100vh;
+}
+
+input,
+button,
+submit {
+  border: none;
+}

@@ -4,7 +4,7 @@ import Main from './components/Main';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/main.scss';
 ReactDOM.render(
-  <div>
+  <div className="root">
     <Main />
   </div>,
   document.getElementById('root')
