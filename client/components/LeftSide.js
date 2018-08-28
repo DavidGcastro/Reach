@@ -4,29 +4,18 @@ import Welcome from './Welcome';
 import Settings from './Settings';
 import GameStart from './GameStart';
 
-class LeftSide extends React.Component {
-  constructor() {
-    super();
-
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
-    this.setState({ initialView: false, visible: true });
-  }
-  render() {
-    return (
-      <Router>
-        <div className="left--parent">
-          <div className="left--currentContent">
-            <Route exact path="/" component={Welcome} />
-            <Route exact path="/settings" component={Settings} />
-            <Route exact path="/start" component={GameStart} />
-          </div>
+const LeftSide = () => {
+  return (
+    <Router>
+      <div className="left--parent">
+        <div className="left--currentContent">
+          <Route exact path="/" component={Welcome} />
+          <Route exact path="/settings" component={Settings} />
+          <Route exact path="/start" component={GameStart} />
         </div>
-      </Router>
-    );
-  }
-}
+      </div>
+    </Router>
+  );
+};
 
 export default LeftSide;

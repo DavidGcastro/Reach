@@ -10,8 +10,8 @@ export default class Settings extends React.Component {
       difficulty: '',
       words: '',
       chosenWord: '',
-      minLength: 5,
-      maxLength: 5,
+      minLength: 3,
+      maxLength: 12,
       start: 0,
       count: 30
     };

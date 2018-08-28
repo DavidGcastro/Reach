@@ -1,7 +1,6 @@
 import React from 'react';
 import LeftSide from './LeftSide';
 import RightSide from './RightSide';
-import { Link } from 'react-router-dom';
 
 export default class Main extends React.Component {
   constructor() {
