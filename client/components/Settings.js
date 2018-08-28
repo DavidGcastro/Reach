@@ -36,7 +36,7 @@ export default class Settings extends React.Component {
         unmountOnExit>
         <form>
           <div style={{ marginBottom: '20px' }}>
-            <label name="name" style={{ display: 'block', fontSize: '4vh' }}>
+            <label name="name" style={{ display: 'block', fontSize: '3vh' }}>
               Name
             </label>
             <input
@@ -48,7 +48,7 @@ export default class Settings extends React.Component {
           <div style={{ marginBottom: '20px' }}>
             <label
               name="difficulty"
-              style={{ display: 'block', fontSize: '4vh' }}>
+              style={{ display: 'block', fontSize: '3vh' }}>
               Enter Difficulty
             </label>
             <input

@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import WordDisplay from './WordDisplay';
 import { CSSTransition } from 'react-transition-group';
 
 export default class GameStart extends React.Component {
@@ -9,12 +8,14 @@ export default class GameStart extends React.Component {
     this.state = {
       words: '',
       chosenWord: '',
-      guesses: 0,
-      currentGuess: ''
+      guessCount: 0,
+      currentGuess: '',
+      guesses: []
     };
     this.getRandomWord = this.getRandomWord.bind(this);
     this.checkGuess = this.checkGuess.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.revealLetters = this.revealLetters.bind(this);
   }
 
   componentDidMount = () => {
@@ -52,26 +53,19 @@ export default class GameStart extends React.Component {
   checkGuess(e) {
     if (e.key === 'Enter') {
       let guess = this.state.currentGuess;
-      this.setState({ guesses: this.state.guesses + 1 });
-
-      if (guess.length > 1) {
-        if (this.state.chosenWord.includes(guess)) {
-          alert('Included!');
-        }
-      } else {
-        if (this.state.chosenWord.indexOf(guess) !== -1) {
-          correctGuess = guess;
-        }
-      }
+      this.setState({ guessCount: this.state.guessCount + 1 });
+      this.setState({ guesses: [...this.state.guesses].concat(guess) });
     }
   }
 
   handleChange(e) {
     this.setState({ currentGuess: e.target.value });
   }
+  revealLetters() {
+    
+  }
 
   render() {
-    let correctGuess = '';
     let splitWord = this.state.chosenWord.split('');
     return (
       <CSSTransition
@@ -95,8 +89,50 @@ export default class GameStart extends React.Component {
             placeholder="Type Letter or Phrase"
             style={{ padding: 10 }}
           />
-          <div style={{ flexDirection: 'row', display: 'flex' }}>
-            <WordDisplay word={splitWord} guess={correctGuess} />
+          <div style={{ display: 'flex' }}>
+            {this.state.guesses.map((letter, index) => {
+              return (
+                <div
+                  key={index}
+                  style={{
+                    borderBottom: '1px solid black',
+                    margin: '10px',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'space-evenly',
+                    flexWrap: 'wrap'
+                  }}>
+                  <h1 style={{ flex: 1, fontSize: '3vh' }}>{letter}</h1>
+                </div>
+              );
+            })}
+          </div>
+          <div style={{ display: 'flex' }}>
+            {splitWord.map((letter, index) => {
+              return (
+                <div
+                  key={index}
+                  style={{
+                    borderBottom: '1px solid black',
+                    margin: '10px',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'space-evenly',
+                    flexWrap: 'wrap',
+                    minWidth: '30px'
+                  }}>
+                  <h1
+                    style={{
+                      flex: 1,
+                      fontSize: '3vh',
+                      textAlign: 'center',
+                      display: 'none'
+                    }}>
+                    {letter}
+                  </h1>
+                </div>
+              );
+            })}
           </div>
         </div>
       </CSSTransition>
