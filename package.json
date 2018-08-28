@@ -32,6 +32,7 @@
     "react-transition-group": "^2.4.0",
     "reactstrap": "^6.4.0",
     "redux": "^4.0.0",
+    "redux-devtools-extension": "^2.13.5",
     "redux-logger": "^3.0.6",
     "volleyball": "^1.5.1"
   },
