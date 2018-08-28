@@ -10,9 +10,9 @@ export default class Main extends React.Component {
       words: '',
       difficulty: 3,
       minLength: 3,
-      maxLenght: 10,
+      maxLength: 10,
       start: 0,
-      count: 20,
+      count: 30,
       guesses: 0,
       chosenWord: ''
     };
