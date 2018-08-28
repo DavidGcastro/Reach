@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
+import { connect } from 'react-redux';
+
 export default class Settings extends React.Component {
   constructor() {
     super();
@@ -74,3 +76,26 @@ export default class Settings extends React.Component {
     );
   }
 }
+
+// const mapProducts = state => {
+//   return {
+//     products: state.products,
+//     selectedProduct: state.selectedProduct,
+//     filtered: state.filter,
+//     currUser: state.user,
+//     users: state.allUsers
+//   };
+// };
+// const mapDispatch = dispatch => {
+//   return {
+//     getCurrentProduct: id => dispatch(getCurrentProduct(id)),
+//     addProductToCart: product => dispatch(addToCartList(product)),
+//     addProduct: (userId, item) => {
+//       dispatch(addItem(userId, { productId: item }));
+//     }
+//   };
+// };
+// export const Products = connect(
+//   mapProducts,
+//   mapDispatch
+// )(ProductList);
