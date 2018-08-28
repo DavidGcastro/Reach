@@ -1,7 +1,7 @@
 import React from 'react';
-import axios from 'axios';
 import LeftSide from './LeftSide';
 import RightSide from './RightSide';
+import { Link } from 'react-router-dom';
 
 export default class Main extends React.Component {
   constructor() {
@@ -18,21 +18,7 @@ export default class Main extends React.Component {
     };
     this.getRandomWord = this.getRandomWord.bind(this);
   }
-  componentDidMount = () => {
-    // axios
-    //   .get('http://app.linkedin-reach.io/words', {
-    //     params: {
-    //       difficulty: this.state.difficulty,
-    //       minLength: this.state.minLength,
-    //       maxLenght: this.state.maxLenght,
-    //       start: this.state.start,
-    //       count: this.state.count
-    //     }
-    //   })
-    //   .then(res => this.setState({ words: res.data.split('\n') }))
-    //   .then(data => this.getRandomWord())
-    //   .catch(error => console.error(error));
-  };
+  componentDidMount = () => {};
 
   getRandomWord() {
     let index = [Math.floor(Math.random() * this.state.count + 1)];
