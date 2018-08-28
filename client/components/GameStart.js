@@ -12,7 +12,10 @@ export default class GameStart extends React.Component {
       currentGuess: ''
     };
     this.getRandomWord = this.getRandomWord.bind(this);
+    this.checkGuess = this.checkGuess.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
+
   componentDidMount = () => {
     let {
       difficulty,
@@ -45,6 +48,26 @@ export default class GameStart extends React.Component {
 
     return this.setState({ chosenWord: words[index] });
   }
+  checkGuess(e) {
+    if (e.key === 'Enter') {
+      let guess = this.state.currentGuess;
+      this.setState({ guesses: this.state.guesses + 1 });
+
+      if (guess.length > 1) {
+        if (this.state.chosenWord.includes(guess)) {
+          alert('Included!');
+        }
+      } else {
+        if (this.state.chosenWord.indexOf(guess) !== -1) {
+          alert('included!');
+        }
+      }
+    }
+  }
+
+  handleChange(e) {
+    this.setState({ currentGuess: e.target.value });
+  }
 
   render() {
     console.log(this.state.chosenWord);
@@ -65,8 +88,10 @@ export default class GameStart extends React.Component {
           }}>
           <h1>Guess Wisely. </h1>
           <input
+            onKeyPress={this.checkGuess}
+            onChange={e => this.setState({ currentGuess: e.target.value })}
             type="text"
-            placeHolder="Type Letter or Phrase"
+            placeholder="Type Letter or Phrase"
             style={{ padding: 10 }}
           />
           <div style={{ flexDirection: 'row', display: 'flex' }}>
@@ -78,8 +103,9 @@ export default class GameStart extends React.Component {
                     borderBottom: '3px solid',
                     margin: 5,
                     width: '50px'
-                  }}
-                />
+                  }}>
+                  {letter}
+                </div>
               );
             })}
           </div>
