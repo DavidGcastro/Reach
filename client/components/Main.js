@@ -30,19 +30,21 @@ export default class Main extends React.Component {
         }
       })
       .then(res => this.setState({ words: res.data.split('\n') }))
+      .then(data => this.getRandomWord())
       .catch(error => console.error(error));
   };
 
   getRandomWord() {
     let index = [Math.floor(Math.random() * this.state.count + 1)];
-    return this.state.words[index];
+    let word = this.state.words[index];
+    return this.setState({ chosenWord: word });
   }
 
   render() {
     return (
       <div className="main--parent">
         <LeftSide />
-        <RightSide />
+        <RightSide word={this.state.chosenWord} />
       </div>
     );
   }

@@ -1,15 +1,29 @@
 import React from 'react';
-import Transition from 'react-transition-group/Transition';
 import Welcome from './Welcome';
+import { CSSTransition } from 'react-transition-group';
 
-const LeftSide = () => {
-  return (
-    <div className="left--parent">
-      <div className="left--currentContent">
-        <Welcome />
+class LeftSide extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      visible: true
+    };
+  }
+  render() {
+    return (
+      <div className="left--parent">
+        <div className="left--currentContent">
+          <CSSTransition
+            in={this.state.visible}
+            appear={true}
+            
+            classNames="fade">
+            <Welcome />
+          </CSSTransition>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default LeftSide;

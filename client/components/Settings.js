@@ -1,5 +1,11 @@
 import React from 'react';
 
-const Settings = () => {};
+const Settings = () => {
+  return (
+    <div className="flexer">
+      <h1>Setting</h1>
+    </div>
+  );
+};
 
 export default Settings;
