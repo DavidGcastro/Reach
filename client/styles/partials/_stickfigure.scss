@@ -1,0 +1,83 @@
+#pole {
+  height: 10rem;
+  width: 6rem;
+  border-left: 3px solid black;
+  border-top: 3px solid black;
+}
+#noose {
+  border-right: 3px solid black;
+  height: 1.5rem;
+}
+
+#diagonal {
+  height: 3rem;
+  border-left: 3px solid black;
+  transform: rotate(45deg);
+}
+
+#base {
+  width: 6rem;
+  border-top: 3px solid black;
+  padding-bottom: 3rem;
+  position: absolute;
+  margin-top: 5.25rem;
+  margin-left: -1.55rem;
+}
+
+#stick-figure {
+  position: absolute;
+  margin-left: 6.0999rem;
+  margin-top: 0.9rem;
+}
+.swinging {
+  animation: swing 2s ease-in-out infinite alternate;
+}
+@keyframes swing {
+  0% {
+  }
+  50% {
+    transform: translate3d(4px, 0px, 0px) skew(5deg);
+  }
+  100% {
+    transform: translate3d(-4px, 0px, 0px) skew(-5deg);
+  }
+}
+
+.show-hangman {
+  opacity: 1;
+  stroke: black;
+  stroke-width: 3;
+}
+.hide-hangman {
+  opacity: 0;
+}
+#hangman-head {
+  fill: transparent;
+  stroke: black;
+  stroke-width: 3;
+}
+#hangman-body {
+  fill: transparent;
+  stroke: black;
+  stroke-width: 3;
+}
+#hangman-leftArm {
+  fill: transparent;
+  stroke: black;
+  stroke-width: 3;
+}
+#hangman-rightArm {
+  fill: transparent;
+  stroke: black;
+  stroke-width: 3;
+}
+#hangman-leftLeg {
+  fill: transparent;
+  stroke: black;
+  stroke-width: 3;
+}
+#hangman-rightLeg {
+  fill: transparent;
+  stroke: black;
+  stroke-width: 3;
+}

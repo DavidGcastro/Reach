@@ -1,12 +1,15 @@
 import React from 'react';
 import axios from 'axios';
+import { CSSTransition } from 'react-transition-group';
 
 export default class GameStart extends React.Component {
   constructor() {
     super();
     this.state = {
       words: '',
-      chosenWord: ''
+      chosenWord: '',
+      guesses: 0,
+      currentGuess: ''
     };
     this.getRandomWord = this.getRandomWord.bind(this);
   }
@@ -22,7 +25,7 @@ export default class GameStart extends React.Component {
     return axios
       .get('http://app.linkedin-reach.io/words', {
         params: {
-          difficulty: Number(difficulty),
+          difficulty: Number(difficulty) || 5,
           minLength,
           maxLength,
           start,
@@ -44,6 +47,44 @@ export default class GameStart extends React.Component {
   }
 
   render() {
-    return <h1>{this.state.chosenWord}</h1>;
+    console.log(this.state.chosenWord);
+    let splitWord = this.state.chosenWord.split('');
+    return (
+      <CSSTransition
+        in={true}
+        appear
+        timeout={500}
+        classNames="fade"
+        unmountOnExit>
+        <div
+          style={{
+            justifyContent: 'space-evenly',
+            display: 'flex',
+            flex: 1,
+            flexDirection: 'column'
+          }}>
+          <h1>Guess Wisely. </h1>
+          <input
+            type="text"
+            placeHolder="Type Letter or Phrase"
+            style={{ padding: 10 }}
+          />
+          <div style={{ flexDirection: 'row', display: 'flex' }}>
+            {splitWord.map((letter, index) => {
+              return (
+                <div
+                  key={letter + index}
+                  style={{
+                    borderBottom: '3px solid',
+                    margin: 5,
+                    width: '50px'
+                  }}
+                />
+              );
+            })}
+          </div>
+        </div>
+      </CSSTransition>
+    );
   }
 }
