@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import WordDisplay from './WordDisplay';
 import { CSSTransition } from 'react-transition-group';
 
 export default class GameStart extends React.Component {
@@ -59,7 +60,7 @@ export default class GameStart extends React.Component {
         }
       } else {
         if (this.state.chosenWord.indexOf(guess) !== -1) {
-          alert('included!');
+          correctGuess = guess;
         }
       }
     }
@@ -70,7 +71,7 @@ export default class GameStart extends React.Component {
   }
 
   render() {
-    console.log(this.state.chosenWord);
+    let correctGuess = '';
     let splitWord = this.state.chosenWord.split('');
     return (
       <CSSTransition
@@ -95,19 +96,7 @@ export default class GameStart extends React.Component {
             style={{ padding: 10 }}
           />
           <div style={{ flexDirection: 'row', display: 'flex' }}>
-            {splitWord.map((letter, index) => {
-              return (
-                <div
-                  key={letter + index}
-                  style={{
-                    borderBottom: '3px solid',
-                    margin: 5,
-                    width: '50px'
-                  }}>
-                  {letter}
-                </div>
-              );
-            })}
+            <WordDisplay word={splitWord} guess={correctGuess} />
           </div>
         </div>
       </CSSTransition>
