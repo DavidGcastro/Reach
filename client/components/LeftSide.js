@@ -1,12 +1,12 @@
 import React from 'react';
+import Transition from 'react-transition-group/Transition';
+import Welcome from './Welcome';
+
 const LeftSide = () => {
   return (
     <div className="left--parent">
-      <div className="left--parent--textContainer">
-        <h1>The</h1>
-        <h1>Great</h1>
-        <h1>Guessing Game</h1>
-        <button className="button">Begin</button>
+      <div className="left--currentContent">
+        <Welcome />
       </div>
     </div>
   );
