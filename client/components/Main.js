@@ -5,14 +5,15 @@ import Settings from '../containers/Settings';
 import GameStart from '../containers/GameStart';
 import StickFigure from '../containers/StickFigure';
 import GameWinner from '../containers/GameWinner';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Dancer from './Dancer';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const Main = () => {
   return (
     <Router>
-      <switch>
+      <Switch>
+        <Route exact path="/gamewinner" component={GameWinner} />
         <div className="main--parent">
-          <Route exact path="/gamewinner" component={GameWinner} />
           <div className="left--parent">
             <div className="left--currentContent">
               <Route exact path="/" component={Welcome} />
@@ -24,9 +25,10 @@ const Main = () => {
             <Route exact path="/" component={RightSide} />
             <Route exact path="/settings" component={RightSide} />
             <Route exact path="/start" component={StickFigure} />
+            <Route exact path="/gamewinner" component={Dancer} />
           </div>
         </div>
-      </switch>
+      </Switch>
     </Router>
   );
 };
