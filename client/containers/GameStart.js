@@ -31,35 +31,28 @@ class GameStart extends React.Component {
   findIndex(guess) {
     let { word } = this.props.state;
     guess = guess.toString();
+    guess = word.toLowerCase();
     //handle phrases
     if (guess.length > 1) {
       //only display letters if entire phrase is present.
-      console.log('GREATER THAN 1 LETTER');
       if (word.includes(guess)) {
-        console.log("guess grater than on", guess)
-        console.log('WORD IS INCLUDED');
         this.revealLetters(word, guess);
       } else {
         //if the entire phrase isnt present return.
-        console.log('NOT INCLUDED');
         return;
       }
     } else {
       //single letter, just check each letter.
-      console.log('ONE LETTER');
+
       this.revealLetters(word, guess);
     }
   }
 
   revealLetters(word, guess) {
-    console.log(word, guess, 'parms!!');
     for (let i = 0; i < word.length; i++) {
-      console.log(i);
-      console.log('word: ', word, 'guess: ', guess);
       if (guess.includes(word[i])) {
-        console.log('letter included at ', i);
+        console.log(this.refs[i]);
         this.refs[i].style.display = 'block';
-        //  this.setState({ indicesCorrect: this.state.indicesCorrect.push(i) });
       }
     }
 

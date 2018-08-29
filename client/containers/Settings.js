@@ -9,7 +9,7 @@ class Settings extends React.Component {
     super();
     this.state = {
       name: '',
-      difficulty: 5,
+      difficulty: 6,
       minLength: 3,
       maxLength: 10,
       start: 0,
@@ -19,6 +19,7 @@ class Settings extends React.Component {
   }
 
   handleSubmit(e) {
+    this.setState({ difficulty: Number(this.state.difficulty) });
     this.props.getWords(this.state);
     this.props.history.push('/start');
   }
