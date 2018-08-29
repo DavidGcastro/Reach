@@ -8,29 +8,29 @@ class GameStart extends React.Component {
     super();
     this.state = {
       currentGuess: '',
-      allGuesses: [],
-      indicesCorrect: []
+      allGuesses: []
     };
+    this.indicesCorrect = [];
+
     this.findIndex = this.findIndex.bind(this);
     this.revealLetters = this.revealLetters.bind(this);
   }
 
   handleSubmit() {
-    if (this.state.currentGuess) {
+    if (this.state.currentGuess.length) {
       this.setState({
         allGuesses: [...this.state.allGuesses, this.state.currentGuess]
       });
       this.props.guessCount();
       this.findIndex(this.state.currentGuess);
     }
-    this.setState({ currentGuess: '' });
     this.refs.input.value = '';
   }
 
   findIndex(guess) {
     let { word } = this.props.state;
-    guess = guess.toString();
-    guess = guess.toLowerCase();
+    guess = guess.toString().toLowerCase();
+
     //handle phrases
     if (guess.length > 1) {
       //only display letters if entire phrase is present.
@@ -51,11 +51,11 @@ class GameStart extends React.Component {
     for (let i = 0; i < word.length; i++) {
       if (guess.includes(word[i])) {
         this.refs[i].style.display = 'block';
-        this.setState({ indicesCorrect: this.state.indicesCorrect.push(i) });
+        this.indicesCorrect.push(i);
       }
     }
 
-    if (this.state.indicesCorrect.length >= word.length) {
+    if (this.indicesCorrect.length >= word.length) {
       this.props.history.push(`/gamewinner`);
     }
   }
