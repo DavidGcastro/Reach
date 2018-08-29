@@ -4,7 +4,7 @@ const GET_WORD = 'GET_WORD';
 /**
  * ACTION CREATORS
  */
-const getWord = wordsArr => ({ type: GET_WORD, wordsArr });
+const getWord = word => ({ type: GET_WORD, word });
 
 /**
  * THUNK CREATORS
@@ -22,6 +22,7 @@ export const getWordAsync = () => dispatch =>
     })
     .then(res => res.data)
     .then(words => words.split('\n'))
+    .then(pickWord => pickWord[Math.ceil(Math.random() * 20 + 1)])
     .then(wordsArr => dispatch(getWord(wordsArr)))
     .catch(err => console.error(err));
 
@@ -29,10 +30,10 @@ export const getWordAsync = () => dispatch =>
  * REDUCER
  */
 
-export default function(state = [], action) {
+export default function(state = '', action) {
   switch (action.type) {
     case GET_WORD:
-      return [...action.wordsArr];
+      return action.word;
     default:
       return state;
   }

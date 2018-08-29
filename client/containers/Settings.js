@@ -1,10 +1,9 @@
 import React from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
-
-export default class Settings extends React.Component {
+import { getWordAsync } from '../redux/reducers/word';
+class Settings extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -17,18 +16,15 @@ export default class Settings extends React.Component {
       start: 0,
       count: 30
     };
-    this.handleName = this.handleName.bind(this);
-    this.handleDifficulty = this.handleDifficulty.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleName(e) {
-    this.setState({ name: e.target.value });
-  }
-  handleDifficulty(e) {
-    this.setState({ difficulty: e.target.value });
+  handleSubmit(e) {
+    this.props.getWords();
   }
 
   render() {
+    console.log(this.props);
     return (
       <CSSTransition
         in={true}
@@ -42,7 +38,7 @@ export default class Settings extends React.Component {
               Name
             </label>
             <input
-              onChange={event => this.handleName(event)}
+              onChange={event => this.setState({ name: event.target.name })}
               style={{ padding: 10, borderRadius: 5 }}
               placeholder="Enter your name."
             />
@@ -54,7 +50,9 @@ export default class Settings extends React.Component {
               Enter Difficulty
             </label>
             <input
-              onChange={event => this.handleDifficulty(event)}
+              onChange={event =>
+                this.setState({ difficulty: event.target.difficulty })
+              }
               min="1"
               max="10"
               type="number"
@@ -62,40 +60,25 @@ export default class Settings extends React.Component {
               placeholder="Enter your Difficulty."
             />
           </div>
-          <Link
-            to={{
-              pathname: '/start',
-              state: this.state
-            }}>
-            <button type="button" className="button" style={{ width: '100%' }}>
-              Enter
-            </button>
-          </Link>
+
+          <button
+            onClick={() => this.handleSubmit()}
+            type="button"
+            className="button"
+            style={{ width: '100%' }}>
+            Enter
+          </button>
         </form>
       </CSSTransition>
     );
   }
 }
 
-// const mapProducts = state => {
-//   return {
-//     products: state.products,
-//     selectedProduct: state.selectedProduct,
-//     filtered: state.filter,
-//     currUser: state.user,
-//     users: state.allUsers
-//   };
-// };
-// const mapDispatch = dispatch => {
-//   return {
-//     getCurrentProduct: id => dispatch(getCurrentProduct(id)),
-//     addProductToCart: product => dispatch(addToCartList(product)),
-//     addProduct: (userId, item) => {
-//       dispatch(addItem(userId, { productId: item }));
-//     }
-//   };
-// };
-// export const Products = connect(
-//   mapProducts,
-//   mapDispatch
-// )(ProductList);
+const mapDispatchToProps = dispatch => {
+  return { getWords: dispatch(getWordAsync()) };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Settings);
