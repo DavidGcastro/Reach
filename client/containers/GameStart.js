@@ -7,12 +7,18 @@ class GameStart extends React.Component {
   constructor() {
     super();
     this.state = {
-      currentGuess: ''
+      currentGuess: '',
+      allGuesses: []
     };
     this.findIndex = this.findIndex.bind(this);
+    this.revealLetters = this.revealLetters.bind(this);
   }
 
   handleSubmit() {
+    this.setState({
+      allGuesses: [...this.state.allGuesses, this.state.currentGuess]
+    });
+
     this.refs.input.value = '';
     this.props.guessCount();
     this.findIndex(this.state.currentGuess);
@@ -20,8 +26,19 @@ class GameStart extends React.Component {
 
   findIndex(guess) {
     let { word } = this.props.state;
-    guess = guess.toString();
+    guess = guess.toString(); //handle phrases
+    if (guess.length > 1) {
+      if (word.includes(guess)) {
+        this.revealLetters(word, guess);
+      } else {
+        return;
+      }
+    } else {
+      this.revealLetters(word, guess);
+    }
+  }
 
+  revealLetters(word, guess) {
     for (let i = 0; i < word.length; i++) {
       if (guess.includes(word[i])) {
         this.refs[i].style.display = 'block';
@@ -31,8 +48,7 @@ class GameStart extends React.Component {
 
   render() {
     let { state } = this.props;
-    let { word } = state;
-    console.log(word);
+    let { word, guess } = state;
 
     let wordArr = word ? word.split('') : [];
 
@@ -73,6 +89,7 @@ class GameStart extends React.Component {
             placeholder="Type Letter or Phrase"
           />
           <button
+            disabled={guess >= 6}
             type="button"
             onClick={() => this.handleSubmit()}
             style={{ width: '100%' }}
