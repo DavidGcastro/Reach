@@ -1,11 +1,13 @@
 import axios from 'axios';
 const GET_WORD = 'GET_WORD';
-
+const GUESS = 'GUESS';
 /**
  * ACTION CREATORS
  */
 const getWord = word => ({ type: GET_WORD, word });
-
+export const madeGuess = () => ({
+  type: GUESS
+});
 /**
  * THUNK CREATORS
  */
@@ -30,11 +32,13 @@ export const getWordAsync = x => dispatch =>
  * REDUCER
  */
 
-export default function(state = '', action) {
+export default function(initialState = { guess: 0 }, action) {
   switch (action.type) {
     case GET_WORD:
-      return action.word;
+      return { ...initialState, word: action.word };
+    case GUESS:
+      return { ...initialState, guess: initialState.guess + 1 };
     default:
-      return state;
+      return initialState;
   }
 }

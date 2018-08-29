@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 const StickFigure = props => {
+  console.log(props);
   return (
     <div className="right--parent flexer">
       <div
@@ -70,4 +72,13 @@ const StickFigure = props => {
   );
 };
 
-export default StickFigure;
+const mapStateToProps = state => {
+  return {
+    guessCount: state.mainReducer.guess
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(StickFigure);

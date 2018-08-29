@@ -2,10 +2,10 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import wordReducer from './reducers/word';
+import mainReducer from './reducers/mainReducer';
 
 const reducer = combineReducers({
-  wordReducer
+  mainReducer
 });
 
 const middleware = composeWithDevTools(

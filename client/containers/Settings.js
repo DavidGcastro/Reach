@@ -1,7 +1,7 @@
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
-import { getWordAsync } from '../redux/reducers/word';
+import { getWordAsync } from '../redux/reducers/mainReducer';
 import store from '../redux/store';
 
 class Settings extends React.Component {
