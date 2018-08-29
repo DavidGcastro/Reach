@@ -19,6 +19,7 @@ const Main = () => {
         </div>
         <div className="right--parent flexer">
           <Route exact path="/" component={RightSide} />
+          <Route exact path="/settings" component={RightSide} />
           <Route exact path="/start" component={StickFigure} />
         </div>
       </div>

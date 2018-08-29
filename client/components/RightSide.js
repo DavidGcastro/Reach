@@ -1,7 +1,12 @@
 import React from 'react';
 
 const RightSide = props => {
-  return <h1 />;
+  return (
+    <img
+      style={{ width: '300px', alignSelf: 'center' }}
+      src="./assets/images/Hangman.jpg"
+    />
+  );
 };
 
 export default RightSide;

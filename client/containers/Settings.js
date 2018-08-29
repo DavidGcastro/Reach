@@ -22,6 +22,7 @@ class Settings extends React.Component {
   handleSubmit(e) {
     console.log(this.state);
     this.props.getWords(this.state);
+    this.props.history.push('/start');
   }
 
   render() {
