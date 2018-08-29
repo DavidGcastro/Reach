@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { getWordAsync } from '../redux/reducers/word';
@@ -9,8 +8,6 @@ class Settings extends React.Component {
     this.state = {
       name: '',
       difficulty: 5,
-      words: '',
-      chosenWord: '',
       minLength: 3,
       maxLength: 10,
       start: 0,
@@ -20,11 +17,9 @@ class Settings extends React.Component {
   }
 
   handleSubmit(e) {
-    console.log(this.state);
     this.props.getWords(this.state);
     this.props.history.push('/start');
   }
-
   render() {
     return (
       <CSSTransition
