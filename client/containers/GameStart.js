@@ -8,48 +8,70 @@ class GameStart extends React.Component {
     super();
     this.state = {
       currentGuess: '',
-      allGuesses: []
+      allGuesses: [],
+      indicesCorrect: []
     };
     this.findIndex = this.findIndex.bind(this);
     this.revealLetters = this.revealLetters.bind(this);
   }
 
   handleSubmit() {
-    this.setState({
-      allGuesses: [...this.state.allGuesses, this.state.currentGuess]
-    });
+    if (this.state.currentGuess) {
+      this.setState({
+        allGuesses: [...this.state.allGuesses, this.state.currentGuess]
+      });
 
+      this.props.guessCount();
+      this.findIndex(this.state.currentGuess);
+    }
+    this.setState({ currentGuess: '' });
     this.refs.input.value = '';
-    this.props.guessCount();
-    this.findIndex(this.state.currentGuess);
   }
 
   findIndex(guess) {
     let { word } = this.props.state;
-    guess = guess.toString(); //handle phrases
+    guess = guess.toString();
+    //handle phrases
     if (guess.length > 1) {
+      //only display letters if entire phrase is present.
+      console.log('GREATER THAN 1 LETTER');
       if (word.includes(guess)) {
+        console.log("guess grater than on", guess)
+        console.log('WORD IS INCLUDED');
         this.revealLetters(word, guess);
       } else {
+        //if the entire phrase isnt present return.
+        console.log('NOT INCLUDED');
         return;
       }
     } else {
+      //single letter, just check each letter.
+      console.log('ONE LETTER');
       this.revealLetters(word, guess);
     }
   }
 
   revealLetters(word, guess) {
+    console.log(word, guess, 'parms!!');
     for (let i = 0; i < word.length; i++) {
+      console.log(i);
+      console.log('word: ', word, 'guess: ', guess);
       if (guess.includes(word[i])) {
+        console.log('letter included at ', i);
         this.refs[i].style.display = 'block';
+        //  this.setState({ indicesCorrect: this.state.indicesCorrect.push(i) });
       }
+    }
+
+    if (this.state.indicesCorrect.length === word.length) {
+      this.props.history.push(`/gamewinner`);
     }
   }
 
   render() {
     let { state } = this.props;
     let { word, guess } = state;
-
+    console.log(word, '!!!!');
     let wordArr = word ? word.split('') : [];
 
     return (
@@ -72,6 +94,23 @@ class GameStart extends React.Component {
                   minWidth: '30px'
                 }}>
                 <h1 ref={i} style={{ textAlign: 'center', display: 'none' }}>
+                  {letter}
+                </h1>
+              </div>
+            );
+          })}
+        </div>
+        <div style={{ flexDirection: 'row', display: 'flex' }}>
+          {this.state.allGuesses.map((letter, i) => {
+            return (
+              <div
+                key={i}
+                style={{
+                  borderBottom: '3px black solid',
+                  margin: 10,
+                  minWidth: '30px'
+                }}>
+                <h1 ref={i} style={{ textAlign: 'center' }}>
                   {letter}
                 </h1>
               </div>
