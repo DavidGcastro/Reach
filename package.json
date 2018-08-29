@@ -25,6 +25,7 @@
     "pg": "^7.4.3",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-motion": "^0.5.2",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "react-sound": "^1.2.0",
@@ -32,7 +33,9 @@
     "react-transition-group": "^2.4.0",
     "reactstrap": "^6.4.0",
     "redux": "^4.0.0",
+    "redux-devtools-extension": "^2.13.5",
     "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
     "volleyball": "^1.5.1"
   },
   "devDependencies": {

@@ -10,6 +10,7 @@ const config = {
     filename: 'bundle.js'
   },
   devServer: {
+    headers: { 'Access-Control-Allow-Origin': '*' },
     contentBase: './public/',
     proxy: {
       '/api': {
