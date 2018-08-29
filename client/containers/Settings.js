@@ -2,6 +2,8 @@ import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { getWordAsync } from '../redux/reducers/word';
+import store from '../redux/store';
+
 class Settings extends React.Component {
   constructor() {
     super();
@@ -35,7 +37,7 @@ class Settings extends React.Component {
             </label>
             <input
               onChange={event => this.setState({ name: event.target.value })}
-              style={{ padding: 10, borderRadius: 5 }}
+              style={{ padding: 10 }}
               placeholder="Enter your name."
             />
           </div>
@@ -52,7 +54,7 @@ class Settings extends React.Component {
               min="1"
               max="10"
               type="number"
-              style={{ width: '100%', padding: 10, borderRadius: 5 }}
+              style={{ width: '100%', padding: 10 }}
               placeholder="Enter your Difficulty."
             />
           </div>

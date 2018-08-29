@@ -1,9 +1,20 @@
 import React from 'react';
-import axios from 'axios';
 import { CSSTransition } from 'react-transition-group';
-
-export default class GameStart extends React.Component {
+import { connect } from 'react-redux';
+class GameStart extends React.Component {
   render() {
-    return <h1>Hello world</h1>;
+    let word = this.props.word;
+    return <h1>{word}</h1>;
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    word: state.wordReducer
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(GameStart);
