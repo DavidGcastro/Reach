@@ -1,8 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 const RightSide = props => {
-  console.log(props.guessCount);
   return (
     <img
       style={{ width: '300px', alignSelf: 'center' }}
@@ -11,13 +9,4 @@ const RightSide = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    guessCount: state.mainReducer.guess
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  null
-)(RightSide);
+export default RightSide;

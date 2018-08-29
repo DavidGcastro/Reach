@@ -3,7 +3,7 @@ import RightSide from './RightSide';
 import Welcome from './Welcome';
 import Settings from '../containers/Settings';
 import GameStart from '../containers/GameStart';
-import StickFigure from './StickFigure';
+import StickFigure from '../containers/StickFigure';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 const Main = () => {
