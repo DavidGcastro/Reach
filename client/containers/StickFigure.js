@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const StickFigure = props => {
-  console.log(props);
+  console.log(props, "stick");
   return (
     <div className="right--parent flexer">
       <div

@@ -32,7 +32,7 @@ class Settings extends React.Component {
         unmountOnExit>
         <form>
           <div style={{ marginBottom: '20px' }}>
-            <label name="name" style={{ display: 'block', fontSize: '3vh' }}>
+            <label name="name" style={{ display: 'block', fontSize: '2.5vh' }}>
               Name
             </label>
             <input
@@ -44,7 +44,7 @@ class Settings extends React.Component {
           <div style={{ marginBottom: '20px' }}>
             <label
               name="difficulty"
-              style={{ display: 'block', fontSize: '3vh' }}>
+              style={{ display: 'block', fontSize: '2.5vh' }}>
               Enter Difficulty
             </label>
             <input
@@ -55,7 +55,7 @@ class Settings extends React.Component {
               max="10"
               type="number"
               style={{ width: '100%', padding: 10 }}
-              placeholder="Enter your Difficulty."
+              placeholder="Number 1 - 10"
             />
           </div>
 
