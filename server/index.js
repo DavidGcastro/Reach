@@ -6,9 +6,10 @@ const volleyball = require('volleyball');
 const bodyParser = require('body-parser');
 const path = require('path');
 //logging middleware
+app.use(volleyball);
+
 app.use('/api', require('./api')); // include our routes!
 
-app.use(volleyball);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
