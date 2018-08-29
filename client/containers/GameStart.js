@@ -17,11 +17,16 @@ class GameStart extends React.Component {
   }
 
   handleSubmit() {
+    let guessCount = this.props.state.guess;
+
     if (this.state.currentGuess.length) {
       this.setState({
         allGuesses: [...this.state.allGuesses, this.state.currentGuess]
       });
       this.props.guessCount();
+      if (guessCount === 5) {
+        this.props.history.push(`/gameLoser`);
+      }
       this.findIndex(this.state.currentGuess);
     }
     this.refs.input.value = '';
@@ -63,7 +68,6 @@ class GameStart extends React.Component {
   render() {
     let { state } = this.props;
     let { word, guess } = state;
-    console.log(word);
     let wordArr = word ? word.split('') : [];
 
     return (

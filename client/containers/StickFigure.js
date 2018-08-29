@@ -2,9 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 class StickFigure extends React.Component {
-  constructor() {
-    super();
-  }
   render() {
     let guessCount = this.props.guessCount;
     return (
