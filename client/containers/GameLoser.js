@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 
-const GameWinner = props => {
+const GameLoser = props => {
   let { guess } = props;
   return (
     <CSSTransition
@@ -21,17 +21,16 @@ const GameWinner = props => {
           alignContent: 'center',
           height: '100vh'
         }}>
-        <h1>Winner!</h1>
-        <h1>You got the word in {guess} guesses!</h1>
+        <h1>You Lose!</h1>
         <img
           style={{ width: '300px', alignSelf: 'center' }}
-          src="./assets/images/idek.gif"
+          src="./assets/images/gameover.gif"
         />
         <button
           type="button"
           onClick={() => props.history.push(`/settings`)}
           style={{ width: 300, padding: 10 }}>
-          Play Again?
+          Try Again?
         </button>
       </div>
     </CSSTransition>
@@ -46,4 +45,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   null
-)(GameWinner);
+)(GameLoser);

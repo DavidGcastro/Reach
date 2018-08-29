@@ -5,6 +5,7 @@ import Settings from '../containers/Settings';
 import GameStart from '../containers/GameStart';
 import StickFigure from '../containers/StickFigure';
 import GameWinner from '../containers/GameWinner';
+import GameLoser from '../containers/GameLoser';
 import Dancer from './Dancer';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -13,6 +14,8 @@ const Main = () => {
     <Router>
       <Switch>
         <Route exact path="/gamewinner" component={GameWinner} />
+        <Route exact path="/gameloser" component={GameLoser} />
+
         <div className="main--parent">
           <div className="left--parent">
             <div className="left--currentContent">
