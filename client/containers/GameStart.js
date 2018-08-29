@@ -20,7 +20,6 @@ class GameStart extends React.Component {
       this.setState({
         allGuesses: [...this.state.allGuesses, this.state.currentGuess]
       });
-
       this.props.guessCount();
       this.findIndex(this.state.currentGuess);
     }
@@ -31,11 +30,12 @@ class GameStart extends React.Component {
   findIndex(guess) {
     let { word } = this.props.state;
     guess = guess.toString();
-    guess = word.toLowerCase();
+    guess = guess.toLowerCase();
     //handle phrases
     if (guess.length > 1) {
       //only display letters if entire phrase is present.
       if (word.includes(guess)) {
+        console.log('phrase included');
         this.revealLetters(word, guess);
       } else {
         //if the entire phrase isnt present return.
@@ -43,7 +43,6 @@ class GameStart extends React.Component {
       }
     } else {
       //single letter, just check each letter.
-
       this.revealLetters(word, guess);
     }
   }
@@ -51,12 +50,12 @@ class GameStart extends React.Component {
   revealLetters(word, guess) {
     for (let i = 0; i < word.length; i++) {
       if (guess.includes(word[i])) {
-        console.log(this.refs[i]);
         this.refs[i].style.display = 'block';
+        this.setState({ indicesCorrect: this.state.indicesCorrect.push(i) });
       }
     }
 
-    if (this.state.indicesCorrect.length === word.length) {
+    if (this.state.indicesCorrect.length >= word.length) {
       this.props.history.push(`/gamewinner`);
     }
   }
@@ -64,7 +63,7 @@ class GameStart extends React.Component {
   render() {
     let { state } = this.props;
     let { word, guess } = state;
-    console.log(word, '!!!!');
+    console.log(word);
     let wordArr = word ? word.split('') : [];
 
     return (
@@ -103,9 +102,7 @@ class GameStart extends React.Component {
                   margin: 10,
                   minWidth: '30px'
                 }}>
-                <h1 ref={i} style={{ textAlign: 'center' }}>
-                  {letter}
-                </h1>
+                <h1 style={{ textAlign: 'center' }}>{letter}</h1>
               </div>
             );
           })}

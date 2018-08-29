@@ -13,12 +13,12 @@ class Settings extends React.Component {
       minLength: 3,
       maxLength: 10,
       start: 0,
-      count: 100
+      count: 200
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(e) {
+  handleSubmit() {
     this.setState({ difficulty: Number(this.state.difficulty) });
     this.props.getWords(this.state);
     this.props.history.push('/start');
