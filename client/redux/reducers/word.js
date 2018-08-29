@@ -9,20 +9,20 @@ const getWord = word => ({ type: GET_WORD, word });
 /**
  * THUNK CREATORS
  */
-export const getWordAsync = () => dispatch =>
+export const getWordAsync = x => dispatch =>
   axios
     .get('http://app.linkedin-reach.io/words', {
       params: {
-        difficulty: 4,
-        minLength: 2,
-        maxLength: 10,
-        star: 0,
-        count: 20
+        difficulty: x.difficulty,
+        minLength: x.minLength,
+        maxLength: x.maxLength,
+        start: 0,
+        count: x.count
       }
     })
     .then(res => res.data)
     .then(words => words.split('\n'))
-    .then(pickWord => pickWord[Math.ceil(Math.random() * 20 + 1)])
+    .then(pickWord => pickWord[Math.ceil(Math.random() * 100)])
     .then(wordsArr => dispatch(getWord(wordsArr)))
     .catch(err => console.error(err));
 
@@ -30,7 +30,7 @@ export const getWordAsync = () => dispatch =>
  * REDUCER
  */
 
-export default function(state = '', action) {
+export default function(state = {}, action) {
   switch (action.type) {
     case GET_WORD:
       return action.word;

@@ -8,23 +8,23 @@ class Settings extends React.Component {
     super();
     this.state = {
       name: '',
-      difficulty: '',
+      difficulty: 5,
       words: '',
       chosenWord: '',
       minLength: 3,
-      maxLength: 12,
+      maxLength: 10,
       start: 0,
-      count: 30
+      count: 100
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(e) {
-    this.props.getWords();
+    console.log(this.state);
+    this.props.getWords(this.state);
   }
 
   render() {
-    console.log(this.props);
     return (
       <CSSTransition
         in={true}
@@ -38,7 +38,7 @@ class Settings extends React.Component {
               Name
             </label>
             <input
-              onChange={event => this.setState({ name: event.target.name })}
+              onChange={event => this.setState({ name: event.target.value })}
               style={{ padding: 10, borderRadius: 5 }}
               placeholder="Enter your name."
             />
@@ -51,7 +51,7 @@ class Settings extends React.Component {
             </label>
             <input
               onChange={event =>
-                this.setState({ difficulty: event.target.difficulty })
+                this.setState({ difficulty: event.target.value })
               }
               min="1"
               max="10"
@@ -75,7 +75,7 @@ class Settings extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => {
-  return { getWords: dispatch(getWordAsync()) };
+  return { getWords: x => dispatch(getWordAsync(x)) };
 };
 
 export default connect(
