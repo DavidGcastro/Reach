@@ -78,7 +78,11 @@ class GameStart extends React.Component {
           flexDirection: 'column',
           justifyContent: 'space-evenly'
         }}>
-        <h1>Guess Wisely.</h1>
+        <div>
+          <h1 style={{ marginBottom: '10px' }}>Guess Wisely.</h1>
+          <h4>{6 - guess} Guesses Left.</h4>
+        </div>
+
         <div style={{ flexDirection: 'row', display: 'flex' }}>
           {wordArr.map((letter, i) => {
             return (
