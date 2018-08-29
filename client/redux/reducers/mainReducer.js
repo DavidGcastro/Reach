@@ -1,12 +1,18 @@
 import axios from 'axios';
 const GET_WORD = 'GET_WORD';
 const GUESS = 'GUESS';
+const RESET_GUESSES = 'RESET_GUESSES';
 /**
  * ACTION CREATORS
  */
 const getWord = word => ({ type: GET_WORD, word });
+
 export const madeGuess = () => ({
   type: GUESS
+});
+
+export const reset = () => ({
+  type: RESET_GUESSES
 });
 /**
  * THUNK CREATORS
@@ -26,6 +32,7 @@ export const getWordAsync = x => dispatch =>
     .then(words => words.split('\n'))
     .then(pickWord => pickWord[Math.ceil(Math.random() * 100)])
     .then(wordsArr => dispatch(getWord(wordsArr)))
+    .then(x => dispatch(reset()))
     .catch(err => console.error(err));
 
 /**
@@ -38,6 +45,12 @@ export default function(initialState = { guess: 0 }, action) {
       return { ...initialState, word: action.word };
     case GUESS:
       return { ...initialState, guess: initialState.guess + 1 };
+    case RESET_GUESSES:
+      return {
+        ...initialState,
+        guess: 0
+      };
+
     default:
       return initialState;
   }
