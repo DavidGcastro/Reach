@@ -7,8 +7,7 @@ class GameStart extends React.Component {
   constructor() {
     super();
     this.state = {
-      currentGuess: '',
-      word: ''
+      currentGuess: ''
     };
     this.findIndex = this.findIndex.bind(this);
   }
@@ -21,6 +20,7 @@ class GameStart extends React.Component {
 
   findIndex(guess) {
     let { word } = this.props.state;
+    guess = guess.toString();
 
     for (let i = 0; i < word.length; i++) {
       if (guess.includes(word[i])) {
