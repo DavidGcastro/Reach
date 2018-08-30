@@ -3,7 +3,8 @@ const { Player } = require('../db/models');
 
 router.get('/', (req, res, next) => {
   Player.findAll({
-    order: [['guess']]
+    order: [['guess']],
+    limit: 6
   })
     .then(players => res.send(players))
     .catch(next);
