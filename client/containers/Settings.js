@@ -23,7 +23,10 @@ class Settings extends React.Component {
     this.props.addPlayer(this.state.name);
     this.props.history.push('/start');
   }
+
   render() {
+    let { player } = this.props.state;
+
     return (
       <CSSTransition
         in={true}
@@ -39,7 +42,7 @@ class Settings extends React.Component {
             <input
               onChange={event => this.setState({ name: event.target.value })}
               style={{ padding: 10 }}
-              placeholder="Enter your name."
+              placeholder={player || 'Enter your name.'}
             />
           </div>
           <div style={{ marginBottom: '20px' }}>
@@ -80,8 +83,13 @@ const mapDispatchToProps = dispatch => {
     addPlayer: name => dispatch(addPlayer(name))
   };
 };
+const mapStateToProps = state => {
+  return {
+    state: state.mainReducer
+  };
+};
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Settings);
