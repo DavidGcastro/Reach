@@ -7,18 +7,18 @@
 @import './partials/_winLose';
 
 .grandparent {
-	height: 100vh;
+  height: 100vh;
 }
 
 input,
 button,
 submit {
-	border: none;
+  border: none;
 }
 
 .flexer {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
