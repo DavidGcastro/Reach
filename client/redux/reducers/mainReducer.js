@@ -16,7 +16,7 @@ export const reset = () => ({
 });
 /**
  * THUNK CREATORS
- */
+ //  */
 export const getWordAsync = x => dispatch =>
   axios
     .get('http://app.linkedin-reach.io/words', {
