@@ -9,7 +9,14 @@ Clone reach to your local machine, run an ```npm install```, and then run ```npm
 
 ### Prerequisites
 
-**You must have the ```Allow-Control-Allow-Origin: *``` Chrome extension for this project to work**
+**Download node if have not already**
+
+
+**You must have the ```Allow-Control-Allow-Origin: *```   Chrome extension for this project to work**
+
+Install it [here](https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en)
+
+
 This is due to a CORS error recieved when making a call to the api, this may be due to this project making calls from localhost.
 If this extension is not installed, a word will not be generated. 
 
@@ -43,6 +50,21 @@ The hangman on the right side will be built with each incorrect guess, so guess 
 If your score is within the top 6, it will be shown. 
 
 **For development purposes the chosen word is shown in the console**
+
+## My Thought Process 
+
+Before creating this application, I was hesitant in using React. After all, this application at first seemed a little to simple. I first started using single HTML file, with my logic in several Javascript files that used constructors to generate the word, to increment a guess, and so on. This would have been fine. 
+
+But, I wanted to design an application that felt a bit more like well, an application. 
+The design I wanted was easier implemented using React. I wanted a split screen, that had different data displayed on each side. And I knew React would be perfect for this type of design. 
+
+Using React Router, I was able to transition to other screens and have the changes reflect in the address bar. 
+
+Also, React Router gave me more control over what screens I wanted show, and what data to display in that screen. 
+
+As you can see in my Main.js file in my components directory, I have a "grandparent" div, which encapsulates all my routes, I have one route as the first child, the loser screen, which is the only screen that does displays without any siblings, this route only gets displayed on /gameloser. No other component is displayed on this url. 
+
+All other routes are shared – left and right components are always paired to a url. 
 
 
 
