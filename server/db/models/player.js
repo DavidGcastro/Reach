@@ -2,10 +2,10 @@ const Sequelize = require('sequelize');
 const db = require('../index');
 
 const Player = db.define('player', {
-  name: {
+  player: {
     type: Sequelize.STRING
   },
-  score: {
+  guess: {
     type: Sequelize.INTEGER
   }
 });

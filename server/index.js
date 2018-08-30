@@ -12,10 +12,9 @@ var cors = require('cors');
 app.use(cors());
 app.use(volleyball);
 
-app.use('/api', require('./api')); // include our routes!
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use('/api', require('./api')); // include our routes!
 
 app.use(express.static('./public'));
 

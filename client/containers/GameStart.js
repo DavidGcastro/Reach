@@ -1,7 +1,7 @@
 import React from 'react';
-import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { madeGuess } from '../redux/reducers/mainReducer';
+import axios from 'axios';
 
 class GameStart extends React.Component {
   constructor() {
@@ -51,16 +51,27 @@ class GameStart extends React.Component {
     }
   }
 
-  revealLetters(word, guess) {
+  revealLetters(word, guessToCheck) {
+    let { state } = this.props;
+    let { guess, player } = state;
     for (let i = 0; i < word.length; i++) {
-      if (guess.includes(word[i])) {
+      if (guessToCheck.includes(word[i])) {
         this.refs[i].style.display = 'block';
         this.indicesCorrect.push(i);
       }
     }
 
     if (this.indicesCorrect.length >= word.length) {
-      this.props.history.push(`/gamewinner`);
+      //create player
+      axios
+        .post('/api/highscores', {
+          player,
+          guess
+        })
+        .then(x => this.props.history.push(`/gamewinner`))
+        .catch(function(error) {
+          console.log(error);
+        });
     }
   }
 
@@ -78,7 +89,7 @@ class GameStart extends React.Component {
           justifyContent: 'space-evenly'
         }}>
         <div>
-          <h1 style={{ marginBottom: '10px' }}>Guess Wisely,{" "} {player}</h1>
+          <h1 style={{ marginBottom: '10px' }}>Guess Wisely, {player}</h1>
           <h4>
             <span style={{ color: 'white', fontSize: '5vh', marginRight: 10 }}>
               {6 - guess}
