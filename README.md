@@ -66,6 +66,29 @@ As you can see in my Main.js file in my components directory, I have a "grandpar
 
 All other routes are shared – left and right components are always paired to a url. 
 
+Have these components as siblings would eventually give me more trouble than expected. 
+
+### Problems Faced
+
+As I was coding away, adding transitions on page changes to the left component, I noticed one thing. How was the right side going to know of any guesses I made? How was I going to build my hangman if the left and right components are siblings? 
+
+Then I knew the solution was something I was avoiding (which I should have done in the beginning) – I needed redux. 
+
+I created a Redux store, that handled most of the game logic, this made my app easier to manage, and I felt less trapped since I didn't have to keep track of props all the time. 
+
+### How Redux helped
+
+When the user entered their name, picked a difficulty and clicked the button,
+I fired an event to keep track of the name, and then another event (that used Redux Thunk) to deal with my API call, passing in the difficulty parameter, once the API responded, I turned the string into an array, and picked a word at a random index. I set this as the chosen word in my reducer. 
+
+I connected both the GameStart and StickFigure component to the store.
+The StickFigure component listens for incorrect guesses, and the stick figure body parts will change from display: none, to block depending on the number of guesses. 
+
+In the GameStart component, I dispatch an action that increments total guesses, and another that keeps track of incorrect guesses. 
+
+If the player wins, I send a post request to my api I created, that adds the player name, and the total guesses to my database. Again, all this data comes from my redux store. 
+
+If the number of guesses reaches 6 the player is directed to the GameLoser component where they can try again.
 
 
 ## Built With
