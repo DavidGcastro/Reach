@@ -2,6 +2,7 @@ import axios from 'axios';
 const GET_WORD = 'GET_WORD';
 const GUESS = 'GUESS';
 const RESET_GUESSES = 'RESET_GUESSES';
+const ADD_PLAYER = 'ADD_PLAYER';
 /**
  * ACTION CREATORS
  */
@@ -11,12 +12,18 @@ export const madeGuess = () => ({
   type: GUESS
 });
 
+export const addPlayer = player => ({
+  type: ADD_PLAYER,
+  player
+});
 export const reset = () => ({
   type: RESET_GUESSES
 });
 /**
+ *
  * THUNK CREATORS
  //  */
+
 export const getWordAsync = x => dispatch =>
   axios
     .get('http://app.linkedin-reach.io/words', {
@@ -38,12 +45,15 @@ export const getWordAsync = x => dispatch =>
 /* REDUCER
  */
 
-export default function(initialState = { guess: 0 }, action) {
+export default function(initialState = { guess: 0, player: '' }, action) {
   switch (action.type) {
     case GET_WORD:
       return { ...initialState, word: action.word };
     case GUESS:
       return { ...initialState, guess: initialState.guess + 1 };
+    case ADD_PLAYER: {
+      return { ...initialState, player: action.player };
+    }
     case RESET_GUESSES:
       return {
         ...initialState,

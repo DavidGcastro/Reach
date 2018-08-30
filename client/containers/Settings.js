@@ -1,7 +1,7 @@
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
-import { getWordAsync } from '../redux/reducers/mainReducer';
+import { getWordAsync, addPlayer } from '../redux/reducers/mainReducer';
 
 class Settings extends React.Component {
   constructor() {
@@ -20,6 +20,7 @@ class Settings extends React.Component {
   handleSubmit() {
     this.setState({ difficulty: Number(this.state.difficulty) });
     this.props.getWords(this.state);
+    this.props.addPlayer(this.state.name);
     this.props.history.push('/start');
   }
   render() {
@@ -60,6 +61,7 @@ class Settings extends React.Component {
           </div>
 
           <button
+            disabled={this.state.name.length <= 0}
             onClick={() => this.handleSubmit()}
             type="button"
             className="button"
@@ -73,7 +75,10 @@ class Settings extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => {
-  return { getWords: x => dispatch(getWordAsync(x)) };
+  return {
+    getWords: x => dispatch(getWordAsync(x)),
+    addPlayer: name => dispatch(addPlayer(name))
+  };
 };
 
 export default connect(

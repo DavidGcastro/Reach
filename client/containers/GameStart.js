@@ -66,7 +66,7 @@ class GameStart extends React.Component {
 
   render() {
     let { state } = this.props;
-    let { word, guess } = state;
+    let { word, guess, player } = state;
     let wordArr = word ? word.split('') : [];
 
     return (
@@ -78,9 +78,11 @@ class GameStart extends React.Component {
           justifyContent: 'space-evenly'
         }}>
         <div>
-          <h1 style={{ marginBottom: '10px' }}>Guess Wisely.</h1>
+          <h1 style={{ marginBottom: '10px' }}>Guess Wisely,{" "} {player}</h1>
           <h4>
-            <span style={{ color: 'white', fontSize: '5vh' }}>{6 - guess}</span>{' '}
+            <span style={{ color: 'white', fontSize: '5vh', marginRight: 10 }}>
+              {6 - guess}
+            </span>{' '}
             Guesses Left.
           </h4>
         </div>
