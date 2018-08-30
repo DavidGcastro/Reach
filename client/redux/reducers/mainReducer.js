@@ -35,8 +35,7 @@ export const getWordAsync = x => dispatch =>
     .then(x => dispatch(reset()))
     .catch(err => console.error(err));
 
-/**
- * REDUCER
+/* REDUCER
  */
 
 export default function(initialState = { guess: 0 }, action) {
