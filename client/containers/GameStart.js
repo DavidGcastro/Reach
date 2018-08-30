@@ -20,18 +20,15 @@ class GameStart extends React.Component {
     let guessCount = this.props.state.guess;
     this.props.guessCount();
 
-    if (this.state.currentGuess.length) {
-      this.setState({
-        allGuesses: [...this.state.allGuesses, this.state.currentGuess]
-      });
+    this.setState({
+      allGuesses: [...this.state.allGuesses, this.state.currentGuess]
+    });
 
-      if (guessCount === 5) {
-        this.props.history.push(`/gameLoser`);
-      } else {
-        this.refs.input.value = '';
-        this.findIndex(this.state.currentGuess);
-      }
+    if (guessCount === 5) {
+      this.props.history.push(`/gameLoser`);
     }
+    this.refs.input.value = '';
+    this.findIndex(this.state.currentGuess);
   }
 
   findIndex(guess) {
@@ -143,7 +140,7 @@ class GameStart extends React.Component {
             placeholder="Type Letter or Phrase"
           />
           <button
-            disabled={guess >= 6}
+            disabled={guess >= 6 || this.state.currentGuess.length <= 0}
             type="button"
             onClick={() => this.handleSubmit()}
             style={{ width: '100%' }}
