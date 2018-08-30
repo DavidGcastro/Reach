@@ -81,8 +81,8 @@ I created a Redux store, that handled most of the game logic, this made my app e
 
 ### How I used Redux
 
-When the user enters their name, picked a difficulty and clicked the button,
-I fired an event to keep track of the name, and then another event (that used Redux Thunk) to deal with my API call, passing in the difficulty parameter, once the API responded, I turned the string into an array, and picked a word at a random index. I set this as the chosen word in my reducer. 
+When the user enters their name, picks a difficulty and clicks the button,
+I fire an event to keep track of the name, and then another event (that used Redux Thunk) to deal with my API call, passing in the difficulty parameter, once the API responded, I turned the string into an array, and picked a word at a random index. I set this as the chosen word in my reducer. 
 
 I connected both the GameStart and StickFigure component to the store.
 The StickFigure component listens for incorrect guesses, and the stick figure body parts will change from display: none, to block depending on the number of guesses. 
