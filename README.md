@@ -76,9 +76,12 @@ Then I knew the solution was something I was avoiding (which I should have done 
 
 I created a Redux store, that handled most of the game logic, this made my app easier to manage, and I felt less trapped since I didn't have to keep track of props all the time. 
 
-### How Redux helped
+### How I Displayed Correct Letters
 
-When the user entered their name, picked a difficulty and clicked the button,
+
+### How I used Redux
+
+When the user enters their name, picked a difficulty and clicked the button,
 I fired an event to keep track of the name, and then another event (that used Redux Thunk) to deal with my API call, passing in the difficulty parameter, once the API responded, I turned the string into an array, and picked a word at a random index. I set this as the chosen word in my reducer. 
 
 I connected both the GameStart and StickFigure component to the store.
@@ -89,6 +92,8 @@ In the GameStart component, I dispatch an action that increments total guesses, 
 If the player wins, I send a post request to my api I created, that adds the player name, and the total guesses to my database. Again, all this data comes from my redux store. 
 
 If the number of guesses reaches 6 the player is directed to the GameLoser component where they can try again.
+
+
 
 
 ## Built With
