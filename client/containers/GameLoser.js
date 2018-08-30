@@ -11,25 +11,10 @@ const GameLoser = props => {
       timeout={800}
       classNames="fade"
       unmountOnExit>
-      <div
-        style={{
-          backgroundColor: '#ffde16',
-          display: 'flex',
-          justifyContent: 'center',
-          flexDirection: 'column',
-          alignItems: 'center',
-          alignContent: 'center',
-          height: '100vh'
-        }}>
+      <div className="winLose--parent">
         <h1>You Lose!</h1>
-        <img
-          style={{ width: '300px', alignSelf: 'center' }}
-          src="./assets/images/gameover.gif"
-        />
-        <button
-          type="button"
-          onClick={() => props.history.push(`/settings`)}
-          style={{ width: 300, padding: 10 }}>
+        <img className="mainImg" src="./assets/images/gameover.gif" />
+        <button type="button" onClick={() => props.history.push(`/settings`)}>
           Try Again?
         </button>
       </div>

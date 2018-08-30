@@ -11,26 +11,11 @@ const GameWinner = props => {
       timeout={800}
       classNames="fade"
       unmountOnExit>
-      <div
-        style={{
-          backgroundColor: '#ffde16',
-          display: 'flex',
-          justifyContent: 'center',
-          flexDirection: 'column',
-          alignItems: 'center',
-          alignContent: 'center',
-          height: '100vh'
-        }}>
+      <div className="winLose--parent">
         <h1>Winner!</h1>
-        <h1>You got the word in {guess} guesses!</h1>
-        <img
-          style={{ width: '300px', alignSelf: 'center' }}
-          src="./assets/images/idek.gif"
-        />
-        <button
-          type="button"
-          onClick={() => props.history.push(`/settings`)}
-          style={{ width: 300, padding: 10 }}>
+        <h3>You got the word in {guess} guesses!</h3>
+        <img className="mainImg" src="./assets/images/idek.gif" />
+        <button type="button" onClick={() => props.history.push(`/settings`)}>
           Play Again?
         </button>
       </div>
