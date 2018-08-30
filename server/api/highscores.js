@@ -2,7 +2,9 @@ const router = require('express').Router();
 const { Player } = require('../db/models');
 
 router.get('/', (req, res, next) => {
-  Player.findAll()
+  Player.findAll({
+    order: [['guess']]
+  })
     .then(players => res.send(players))
     .catch(next);
 });

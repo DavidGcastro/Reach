@@ -6,6 +6,7 @@ import GameStart from '../containers/GameStart';
 import StickFigure from '../containers/StickFigure';
 import GameWinner from '../containers/GameWinner';
 import GameLoser from '../containers/GameLoser';
+import GameScores from './GameScores';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const Main = () => {
@@ -26,6 +27,7 @@ const Main = () => {
             <Route exact path="/" component={RightSide} />
             <Route exact path="/settings" component={RightSide} />
             <Route exact path="/start" component={StickFigure} />
+            <Route exact path="/gamewinner" component={GameScores} />
           </div>
         </div>
       </div>

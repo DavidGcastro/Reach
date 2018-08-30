@@ -3,7 +3,7 @@ import React from 'react';
 const RightSide = props => {
   return (
     <img
-      style={{ width: '300px', alignSelf: 'center' }}
+      style={{ width: '40vh', alignSelf: 'center' }}
       src="./assets/images/Hangman.jpg"
     />
   );

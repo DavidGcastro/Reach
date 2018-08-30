@@ -18,18 +18,20 @@ class GameStart extends React.Component {
 
   handleSubmit() {
     let guessCount = this.props.state.guess;
+    this.props.guessCount();
 
     if (this.state.currentGuess.length) {
       this.setState({
         allGuesses: [...this.state.allGuesses, this.state.currentGuess]
       });
-      this.props.guessCount();
+
       if (guessCount === 5) {
         this.props.history.push(`/gameLoser`);
+      } else {
+        this.refs.input.value = '';
+        this.findIndex(this.state.currentGuess);
       }
-      this.findIndex(this.state.currentGuess);
     }
-    this.refs.input.value = '';
   }
 
   findIndex(guess) {
@@ -66,7 +68,7 @@ class GameStart extends React.Component {
       axios
         .post('/api/highscores', {
           player,
-          guess
+          guess: guess + 1
         })
         .then(x => this.props.history.push(`/gamewinner`))
         .catch(function(error) {
