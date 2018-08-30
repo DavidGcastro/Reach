@@ -40,7 +40,6 @@ class GameStart extends React.Component {
     if (guess.length > 1) {
       //only display letters if entire phrase is present.
       if (word.includes(guess)) {
-        console.log('phrase included');
         this.revealLetters(word, guess);
       } else {
         //if the entire phrase isnt present return.
@@ -80,7 +79,10 @@ class GameStart extends React.Component {
         }}>
         <div>
           <h1 style={{ marginBottom: '10px' }}>Guess Wisely.</h1>
-          <h4>{6 - guess} Guesses Left.</h4>
+          <h4>
+            <span style={{ color: 'white', fontSize: '5vh' }}>{6 - guess}</span>{' '}
+            Guesses Left.
+          </h4>
         </div>
 
         <div style={{ flexDirection: 'row', display: 'flex' }}>
