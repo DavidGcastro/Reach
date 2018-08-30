@@ -1,169 +1,181 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { madeGuess } from '../redux/reducers/mainReducer';
+import {
+	addIncorrectGuess,
+	addTotalGuess
+} from '../redux/reducers/mainReducer';
 import axios from 'axios';
 
 class GameStart extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      currentGuess: '',
-      allGuesses: []
-    };
-    this.indicesCorrect = [];
+	constructor() {
+		super();
+		this.state = {
+			currentGuess: '',
+			allGuesses: []
+		};
+		this.indicesCorrect = [];
+		this.findIndex = this.findIndex.bind(this);
+		this.revealLetters = this.revealLetters.bind(this);
+	}
 
-    this.findIndex = this.findIndex.bind(this);
-    this.revealLetters = this.revealLetters.bind(this);
-  }
+	handleSubmit() {
+		//add a guess to the store
+		this.props.addTotalGuess();
+		this.setState({
+			allGuesses: [...this.state.allGuesses, this.state.currentGuess]
+		});
 
-  handleSubmit() {
-    let guessCount = this.props.state.guess;
-    this.props.guessCount();
+		if (this.props.reduxState.incorrectGuess === 5) {
+			this.props.history.push(`/gameloser`);
+		}
+		//empty input
+		this.refs.input.value = '';
+		this.findIndex(this.state.currentGuess);
+	}
 
-    this.setState({
-      allGuesses: [...this.state.allGuesses, this.state.currentGuess]
-    });
+	findIndex(guess) {
+		let { word } = this.props.reduxState;
 
-    if (guessCount === 5) {
-      this.props.history.push(`/gameLoser`);
-    }
-    this.refs.input.value = '';
-    this.findIndex(this.state.currentGuess);
-  }
+		guess = guess.toString().toLowerCase();
+		//handle phrases
+		if (guess.length > 1) {
+			//only display letters if entire phrase is present.
+			if (word.includes(guess)) {
+				this.revealLetters(word, guess);
+			} else {
+				this.props.addIncorrectGuess();
+			}
+		} else {
+			//single letter, just check each letter.
+			this.revealLetters(word, guess);
+		}
+	}
 
-  findIndex(guess) {
-    let { word } = this.props.state;
-    guess = guess.toString().toLowerCase();
+	revealLetters(word, guessToCheck) {
+		let { reduxState } = this.props;
+		let correctIndices = [];
+		let { player } = reduxState;
+		for (let i = 0; i < word.length; i++) {
+			if (guessToCheck.includes(word[i])) {
+				this.refs[i].style.display = 'block';
+				this.indicesCorrect.push(i);
+				//push correct letters to array.
+				correctIndices.push(i);
+			}
+		}
+		if (correctIndices.length === 0) {
+			//no letters found
+			this.props.addIncorrectGuess();
+		}
 
-    //handle phrases
-    if (guess.length > 1) {
-      //only display letters if entire phrase is present.
-      if (word.includes(guess)) {
-        this.revealLetters(word, guess);
-      } else {
-        //if the entire phrase isnt present return.
-        return;
-      }
-    } else {
-      //single letter, just check each letter.
-      this.revealLetters(word, guess);
-    }
-  }
+		if (this.indicesCorrect.length >= word.length) {
+			//create player
+			axios
+				.post('/api/highscores', {
+					player,
+					guess: this.props.reduxState.totalGuesses + 1
+				})
+				.then(() => this.props.history.push(`/gamewinner`))
+				.catch(function(error) {
+					console.log(error);
+				});
+		}
+	}
 
-  revealLetters(word, guessToCheck) {
-    let { state } = this.props;
-    let { guess, player } = state;
-    for (let i = 0; i < word.length; i++) {
-      if (guessToCheck.includes(word[i])) {
-        this.refs[i].style.display = 'block';
-        this.indicesCorrect.push(i);
-      }
-    }
+	render() {
+		let { reduxState } = this.props;
+		let { word, incorrectGuess, player } = reduxState;
+		let wordArr = word ? word.split('') : [];
+		console.log(word);
 
-    if (this.indicesCorrect.length >= word.length) {
-      //create player
-      axios
-        .post('/api/highscores', {
-          player,
-          guess: guess + 1
-        })
-        .then(x => this.props.history.push(`/gamewinner`))
-        .catch(function(error) {
-          console.log(error);
-        });
-    }
-  }
+		return (
+			<div
+				style={{
+					flex: 1,
+					display: 'flex',
+					flexDirection: 'column',
+					justifyContent: 'space-evenly'
+				}}>
+				<div>
+					<h1 style={{ marginBottom: '10px' }}>Guess Wisely, {player}</h1>
+					<h4>
+						<span style={{ color: 'white', fontSize: '5vh', marginRight: 10 }}>
+							{6 - incorrectGuess}
+						</span>{' '}
+						Guesses Left.
+					</h4>
+				</div>
 
-  render() {
-    let { state } = this.props;
-    let { word, guess, player } = state;
-    let wordArr = word ? word.split('') : [];
-
-    return (
-      <div
-        style={{
-          flex: 1,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-evenly'
-        }}>
-        <div>
-          <h1 style={{ marginBottom: '10px' }}>Guess Wisely, {player}</h1>
-          <h4>
-            <span style={{ color: 'white', fontSize: '5vh', marginRight: 10 }}>
-              {6 - guess}
-            </span>{' '}
-            Guesses Left.
-          </h4>
-        </div>
-
-        <div style={{ flexDirection: 'row', display: 'flex' }}>
-          {wordArr.map((letter, i) => {
-            return (
-              <div
-                key={i}
-                style={{
-                  borderBottom: '3px black solid',
-                  margin: 10,
-                  minWidth: '30px'
-                }}>
-                <h1 ref={i} style={{ textAlign: 'center', display: 'none' }}>
-                  {letter}
-                </h1>
-              </div>
-            );
-          })}
-        </div>
-        <div style={{ flexDirection: 'row', display: 'flex' }}>
-          {this.state.allGuesses.map((letter, i) => {
-            return (
-              <div
-                key={i}
-                style={{
-                  borderBottom: '3px black solid',
-                  margin: 10,
-                  minWidth: '30px'
-                }}>
-                <h1 style={{ textAlign: 'center' }}>{letter}</h1>
-              </div>
-            );
-          })}
-        </div>
-        <div>
-          <input
-            ref="input"
-            onChange={event =>
-              this.setState({ currentGuess: event.target.value })
-            }
-            style={{ width: '100%', padding: 10 }}
-            type="text"
-            placeholder="Type Letter or Phrase"
-          />
-          <button
-            disabled={guess >= 6 || this.state.currentGuess.length <= 0}
-            type="button"
-            onClick={() => this.handleSubmit()}
-            style={{ width: '100%' }}
-            className="button">
-            Submit
-          </button>
-        </div>
-      </div>
-    );
-  }
+				<div style={{ flexDirection: 'row', display: 'flex' }}>
+					{wordArr.map((letter, i) => {
+						return (
+							<div
+								key={i}
+								style={{
+									borderBottom: '3px black solid',
+									margin: 10,
+									minWidth: '30px'
+								}}>
+								<h1 ref={i} style={{ textAlign: 'center', display: 'none' }}>
+									{letter}
+								</h1>
+							</div>
+						);
+					})}
+				</div>
+				<div style={{ flexDirection: 'row', display: 'flex' }}>
+					{this.state.allGuesses.map((letter, i) => {
+						return (
+							<div
+								key={i}
+								style={{
+									borderBottom: '3px black solid',
+									margin: 10,
+									minWidth: '30px'
+								}}>
+								<h1 style={{ textAlign: 'center' }}>{letter}</h1>
+							</div>
+						);
+					})}
+				</div>
+				<div>
+					<input
+						ref="input"
+						onChange={event =>
+							this.setState({ currentGuess: event.target.value })
+						}
+						style={{ width: '100%', padding: 10 }}
+						type="text"
+						placeholder="Type Letter or Phrase"
+					/>
+					<button
+						disabled={
+							incorrectGuess >= 6 || this.state.currentGuess.length <= 0
+						}
+						type="button"
+						onClick={() => this.handleSubmit()}
+						style={{ width: '100%' }}
+						className="button">
+						Submit
+					</button>
+				</div>
+			</div>
+		);
+	}
 }
 
 const mapStateToProps = state => {
-  return {
-    state: state.mainReducer
-  };
+	return {
+		reduxState: state.mainReducer
+	};
 };
 const mapDispatchToProps = dispatch => {
-  return {
-    guessCount: () => dispatch(madeGuess())
-  };
+	return {
+		addIncorrectGuess: () => dispatch(addIncorrectGuess()),
+		addTotalGuess: () => dispatch(addTotalGuess())
+	};
 };
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+	mapStateToProps,
+	mapDispatchToProps
 )(GameStart);
