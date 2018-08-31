@@ -5,11 +5,9 @@ const app = express();
 const volleyball = require('volleyball');
 const bodyParser = require('body-parser');
 const path = require('path');
-var cors = require('cors');
 
 //logging middleware
 
-app.use(cors());
 app.use(volleyball);
 
 app.use(bodyParser.json());
