@@ -15,7 +15,6 @@ export default class GameScore extends Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <div
         style={{
