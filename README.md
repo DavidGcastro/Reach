@@ -46,7 +46,7 @@ If your score is within the top 6, it will be shown.
 
 Before creating this application, I was hesitant in using React. After all, this application at first seemed a little to simple. I first started using single HTML file, with my logic in several Javascript files that used constructors to generate the word, to increment a guess, and so on. This would have been fine.
 
-But, I wanted to design an application that felt a bit more like well, an application.
+I wanted to design an application that felt a bit more like well, an application.
 The design I wanted was easier implemented using React. I wanted a split screen, that had different data displayed on each side. And I knew React would be perfect for this type of design.
 
 Using React Router, I was able to transition to other screens and have the changes reflect in the address bar.
@@ -90,14 +90,14 @@ router.get('/:difficulty', (req, res, next) => {
 ### How I used Redux
 
 When the user enters their name, picks a difficulty and clicks the button,
-I fire an event to keep track of the name, and then another event (that used Redux Thunk) to deal with my API call, passing in the difficulty parameter, once the API responded, I turn the string of words into an array, and picke a word at a random index. I set this as the chosen word in my reducer.
+I fire an event to keep track of the name, and then another event (that used Redux Thunk) to deal with my API call, passing in the difficulty parameter, once the API responded, I turn the string of words into an array, and pick a word at a random index. I set this as the chosen word in my reducer.
 
-I connected both the GameStart and StickFigure component to the store.
+I connected both the GameStart and StickFigure component to the store. GameStart compares the current guess with the chosen word that is in my redux store.
 The StickFigure component listens for incorrect guesses, and the stick figure body parts will change from display: none, to block depending on the number of guesses.
 
 In the GameStart component, I dispatch an action that increments total guesses, and another that keeps track of incorrect guesses.
 
-If the player wins, I send a post request to my api I created, that adds the player name, and the total guesses to my database. Again, all this data comes from my redux store.
+If the player wins, I send a post request to /api/highscores that adds the player name, and the total guesses to my database. Again, all this data comes from my redux store.
 
 If the number of guesses reaches 6 the player is directed to the GameLoser component where they can try again.
 
