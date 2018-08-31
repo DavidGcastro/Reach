@@ -10,7 +10,7 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 router.post('/', (req, res, next) => {
-  Player.create(req.body)
+  Player.create({ player: req.body.player, guess: req.body.guess })
     .then(created => res.status(201).json(created))
     .catch(next);
 });
