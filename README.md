@@ -11,30 +11,18 @@ Clone reach to your local machine, run an ```npm install```, and then run ```npm
 
 **Download node if have not already**
 
-
-**You must have the ```Allow-Control-Allow-Origin: *```   Chrome extension for this project to work**
-
-Install it [here](https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en)
-
-
-This is due to a CORS error recieved when making a call to the api, this may be due to this project making calls from localhost.
-If this extension is not installed, a word will not be generated. 
-
 **You must have a PostgreSQL database named ```reach``` for this project to work as well. Please install PostgreSQL if you have not already.**
 
 ### Installing
 
 **First**, create a database in PostgreSQL called reach. This is where we will be saving player's scores over time. 
-Postico is a helpful tool that makes this step easier. 
-
+[Postico](https://eggerapps.at/postico/) is a helpful tool that makes this step easier. 
 **Second**, make sure PostgreSQL is running. 
-
 **Third**, clone the reach repo. 
-
 **Fourth**, in the project root directory, run an ``npm install`` in the terminal, then run an ``npm run start-server`` as well. 
 If you want to make changes while using the application, run a ``npm run build`` in another terminal window to watch for changes and to recompile the bundle.js file.
 
-The local api is hosted on /api/highscores. Note this is limited to the first 6 entries. 
+The local api is hosted on /api/highscores & /api/words. Note the highscores api is limited to the first 6 entries. 
 
 ## How To Play
 
@@ -66,7 +54,7 @@ As you can see in my Main.js file in my components directory, I have a "grandpar
 
 All other routes are shared – left and right components are always paired to a url. 
 
-Have these components as siblings would eventually give me more trouble than expected. 
+Having these components as siblings would eventually give me more trouble than expected. 
 
 ### Problems Faced
 
@@ -75,6 +63,25 @@ As I was coding away, adding transitions on page changes to the left component, 
 Then I knew the solution was something I was avoiding (which I should have done in the beginning) – I needed redux. 
 
 I created a Redux store, that handled most of the game logic, this made my app easier to manage, and I felt less trapped since I didn't have to keep track of props all the time. 
+
+Also, throughout the project I was facing that dreaded CORS issue. I got around this during development using a chrome extension. After trying various npm packages, and express middleware, and adjusting request headers, I finally came to the solution that I should make my API call from the backend. I didnt know this could be done. I struggled getting it to work as I got typeError errors in my terminal. Finally I used an npm package circular-json that handled the data coming back in. The error was the gone. I also made it so my local router took a difficulty parameter that I would pass into my axios call to the linkedin API. I adjusted my redux thunk in my store, and it all worked!
+
+```javascript
+router.get('/:difficulty', (req, res, next) => {
+  let difficulty = req.params.difficulty;
+  axios
+    .get(
+      `http://app.linkedin-reach.io/words?difficulty=${difficulty}&minLength=3&maxLength=10&start=0&count=500`
+    )
+    .then(response => {
+      let json = CircularJSON.stringify(response.data);
+      return json;
+    })
+    .then(words => res.send(words))
+    .catch(error => {
+      console.log(error);
+    });
+});```
 
 ### How I Displayed Correct Letters
 
