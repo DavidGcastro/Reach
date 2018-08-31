@@ -67,7 +67,7 @@ Then I knew the solution was something I was avoiding (which I should have done 
 
 I created a Redux store, that handled most of the game logic, this made my app easier to manage, and I felt less trapped since I didn't have to keep track of props all the time.
 
-Also, throughout the project I was facing that dreaded CORS issue. I got around this during development using a chrome extension. After trying various npm packages, and express middleware, and adjusting request headers, I finally came to the solution that I should make my API call from the backend. I didnt know this could be done. I struggled getting it to work as I got typeError errors in my terminal. Finally I used an npm package circular-json that handled the data coming back in. The error was the gone. I also made it so my local router took a difficulty parameter that I would pass into my axios call to the linkedin API. I adjusted my redux thunk in my store, and it all worked!
+Also, throughout the project I was facing that dreaded CORS issue. I got around this during development using a chrome extension. After trying various npm packages, and express middleware, and adjusting request headers, I finally came to the solution that I should make my API call from the backend. I didnt know this could be done. I struggled getting it to work as I got typeError errors in my terminal. Finally I used an npm package circular-json that handled the data coming back in. The error was the gone. I also made it so my local router took a difficulty parameter that I could pass into my axios call to the linkedin API. I adjusted my redux thunk in my store, and it all worked!
 
 ```javascript
 router.get('/:difficulty', (req, res, next) => {
@@ -90,7 +90,7 @@ router.get('/:difficulty', (req, res, next) => {
 ### How I used Redux
 
 When the user enters their name, picks a difficulty and clicks the button,
-I fire an event to keep track of the name, and then another event (that used Redux Thunk) to deal with my API call, passing in the difficulty parameter, once the API responded, I turned the string into an array, and picked a word at a random index. I set this as the chosen word in my reducer.
+I fire an event to keep track of the name, and then another event (that used Redux Thunk) to deal with my API call, passing in the difficulty parameter, once the API responded, I turn the string of words into an array, and picke a word at a random index. I set this as the chosen word in my reducer.
 
 I connected both the GameStart and StickFigure component to the store.
 The StickFigure component listens for incorrect guesses, and the stick figure body parts will change from display: none, to block depending on the number of guesses.
