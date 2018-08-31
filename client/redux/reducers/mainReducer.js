@@ -28,21 +28,13 @@ export const reset = () => ({
  * THUNK CREATORS
  //  */
 
-export const getWordAsync = x => dispatch =>
+export const getWordAsync = difficulty => dispatch =>
   axios
-    .get('http://app.linkedin-reach.io/words', {
-      params: {
-        difficulty: x.difficulty,
-        minLength: x.minLength,
-        maxLength: x.maxLength,
-        start: 0,
-        count: x.count
-      }
-    })
+    .get(`api/words/${difficulty}`)
     .then(res => res.data)
     .then(words => words.split('\n'))
-    .then(pickWord => pickWord[Math.ceil(Math.random() * 200)])
-    .then(wordsArr => dispatch(getWord(wordsArr)))
+    .then(pickWord => pickWord[Math.ceil(Math.random() * pickWord.length)])
+    .then(chosen => dispatch(getWord(chosen)))
     .then(x => dispatch(reset()))
     .catch(err => console.error(err));
 

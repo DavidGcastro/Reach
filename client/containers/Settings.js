@@ -8,18 +8,14 @@ class Settings extends React.Component {
     super();
     this.state = {
       name: '',
-      difficulty: 6,
-      minLength: 3,
-      maxLength: 10,
-      start: 0,
-      count: 200
+      difficulty: 6
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit() {
     this.setState({ difficulty: Number(this.state.difficulty) });
-    this.props.getWords(this.state);
+    this.props.getWords(this.state.difficulty);
     this.props.addPlayer(this.state.name);
     this.props.history.push('/start');
   }
