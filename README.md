@@ -81,7 +81,8 @@ router.get('/:difficulty', (req, res, next) => {
     .catch(error => {
       console.log(error);
     });
-});```
+});
+```
 
 ### How I Displayed Correct Letters
 
