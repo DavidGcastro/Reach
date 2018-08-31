@@ -13,6 +13,9 @@ Clone reach to your local machine, run an `npm install`, and then run `npm run s
 
 **You must have a PostgreSQL database named `reach` for this project to work as well. Please install PostgreSQL if you have not already.**
 
+
+The database will run on port 5432. You can change this in ```./server/db/index.js```
+
 ### Installing
 
 **First**, create a database in PostgreSQL called reach. This is where we will be saving player's scores over time.
