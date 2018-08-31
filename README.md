@@ -19,10 +19,10 @@ The database will run on port 5432. You can change this in ```./server/db/index.
 ### Installing
 
 **First**, create a database in PostgreSQL called reach. This is where we will be saving player's scores over time.
-[Postico](https://eggerapps.at/postico/) is a helpful tool that makes this step easier.
-**Second**, make sure PostgreSQL is running.
-**Third**, clone the reach repo.
-**Fourth**, in the project root directory, run an `npm install` in the terminal, then run an `npm run start-server` as well.
+[Postico](https://eggerapps.at/postico/) is a helpful tool that makes this step easier.  
+**Second**, make sure PostgreSQL is running.  
+**Third**, clone the reach repo.  
+**Fourth**, in the project root directory, run an `npm install` in the terminal, then run an `npm run start-server` as well.  
 If you want to make changes while using the application, run a `npm run build` in another terminal window to watch for changes and to recompile the bundle.js file.
 
 The local api is hosted on /api/highscores & /api/words. Note the highscores api is limited to the first 6 entries.
